@@ -1,0 +1,28 @@
+<h1>Edit a User</h1>
+
+<%= error_messages_for :user %>
+<%form_for :user, :url => user_path(@user.id), :html => {:method => :put} do |f| %>
+
+<p><label for="first_name">First Name</label><br/>
+<%= f.text_field :first_name, :readonly => true %></p>
+
+<p><label for="last_name">Last Name</label><br/>
+<%= f.text_field :last_name, :readonly => true %></p>
+
+<p><label for="email">Email</label><br/>
+<%= f.text_field :email, :readonly => true %></p>
+
+<p><label for="role">Role</label><br/>
+<%= f.text_field :access_role_id, :readonly => true %></p>
+
+<p><label for="login">Login</label><br/>
+<%= f.text_field :login, :readonly => true %></p>
+
+<p><label for="password">Password</label><br/>
+<%= f.password_field :password %></p>
+
+<p><label for="password_confirmation">Confirm Password</label><br/>
+<%= f.password_field :password_confirmation %></p>
+
+<p><%= submit_tag 'Submit' %></p>
+<% end -%>

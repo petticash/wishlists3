@@ -1,0 +1,28 @@
+<div class="post_title">
+    <h1>Wishlist Users</h1>
+</div>
+<div class="post_body">
+<table>
+<tr> 
+    <th class="lister">Login</th> 
+    <th class="lister">Name</th>  
+    <th class="lister">E-Mail</th>
+    <th class="lister">Role</th>
+  </tr>
+
+<% for user in @users %>
+  <tr>
+    <td class="lister"><%=h user.login %></td>
+    <td class="lister"><%=h user.name %></td>
+    <td class="lister"><%=h user.email %></td>
+    <td class="lister"><%=h user.access_role.name %></td>
+    <td class="lister">
+    <%= link_to 'Show', user_path(:id => user.id) %> </td>
+  </tr>
+<% end %>
+</table>
+
+<p>
+<%= link_to "Add New User", :controller => 'users', :action => 'new' %>
+</p>
+</div>

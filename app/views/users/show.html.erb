@@ -1,0 +1,28 @@
+<H1>User Record</H1>
+
+  
+  <p>
+  <b>Login:</b>
+  <%=h @user.login %>
+</p>
+  
+<p>
+  <b>First Name:</b>
+  <%=h @user.first_name %>
+</p>
+
+
+  <p>
+    <b>Last Name:</b>
+  <%=h @user.last_name %>
+  </p>
+
+  <p>
+   <b>E-Mail:</b>
+  <%=h @user.email %>
+  </p>
+  
+  
+
+<%= link_to 'List', users_path %> | 
+<%= link_to 'Edit', edit_user_path( :id => @user.id) %> 
