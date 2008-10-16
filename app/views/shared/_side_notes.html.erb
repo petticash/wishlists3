@@ -1,0 +1,11 @@
+
+<ul>
+    <% Note.find(:all, :limit => 5, :order => "created_at DESC").each do |note|  %>
+    <li>
+        <%= note.created_at.strftime("%m/%d/%Y") + ": " %>
+        <%= link_to note.name_abbr, note_path(:id => note.id) %>
+    </li>
+<% end %>
+</ul>
+
+

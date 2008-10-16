@@ -1,0 +1,20 @@
+<%# error_messages_for :wish %>
+
+<% fields_for 'wish[]', wish do |f| %>
+<tr>
+    <td>
+        <%= f.text_area :name, :cols => 10, :rows => 6 %>
+        <%= f.text_field :created_at %>
+                <%# f.collection_select :group_ids, Group.find(:all), :id, :name,{}, {:multiple => true , :size => 6, :name => "wish[][group_ids][]"} %>
+        <% Group.find(:all).each do |group| %>
+            <%= group.name %><%= check_box_tag 'wish[][group_ids][]',  group.id %><br/>
+        <% end %>
+    </td>
+    <td>
+    </td>
+</tr>
+<tr><td colspan="2">
+<hr/>
+</td></tr>
+
+<% end %>

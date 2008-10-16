@@ -2,7 +2,9 @@ ActionController::Routing::Routes.draw do |map|
 
   # The priority is based upon order of creation: first created -> highest priority.
 
-  map.resources :users
+  map.resources :users, :collection => {:edit_password => :get}
+  map.resources :wishes, :collection => {:all_wishes => :get, :purchase => :get, :index_purchased => :get}
+  map.resources :notes
   map.resource :session
   
   map.activate '/activate/:activation_code', :controller => 'users', :action => 'activate', :activation_code => nil

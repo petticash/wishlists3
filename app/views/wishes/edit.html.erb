@@ -1,0 +1,49 @@
+<div class="post_title">
+    <h1>Edit Wish</h1>
+</div>
+<div class="post_body">
+
+<table>
+
+<%= error_messages_for :wish %>
+<%form_for :wish, :url => wish_path(@wish.id), :html => {:method => :put} do |f| %>
+
+    <tr>
+        <th class="shower">
+            Wish:
+        </th>
+        <td class="shower">
+            <%= f.text_area :name %>
+        </td>
+    </tr> 
+    <tr>
+        <th class="shower">
+            Wish visible to Groups:
+        </th>
+        <td class="shower">
+            <%= f.collection_select :group_ids, Group.find_users_groups(current_user), :id, :name,{}, {:multiple => true , :size => 6} %>
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan = "2">
+            <br/>
+            <%= submit_tag 'Submit' %>
+       </td>
+    </tr> 
+    
+<% end -%> 
+
+
+    <tr>
+        <td colspan = "2">
+            <br/>
+            <%= link_to 'Show', wish_path %> | <%= link_to 'List', wishes_path(:user_id => @wish.created_by_id) %>
+       </td>
+    </tr> 
+   
+</table>
+
+
+</div> 
+

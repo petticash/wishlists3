@@ -1,0 +1,59 @@
+<div class="post_title">
+    <h1>News and Note Details</h1>
+</div>
+<div class="post_body">
+<table>
+    <tr>
+        <th class="shower">
+            Note:
+        </th>
+        <td class="shower">
+            <%=h @note.name %>
+        </td>
+    </tr>
+    <tr>
+        <th class="shower">
+            Created By:
+        </th>
+        <td class="shower">
+            <%=h @note.created_by.name %>
+        </td>
+    </tr>    
+    <tr>
+        <th class="shower">
+            Date Created:
+        </th>
+        <td class="shower">
+            <%=h @note.created_at.strftime("%m/%d/%Y %I:%M:%S %p") %>
+        </td>
+    </tr>
+    <tr>
+        <th class="shower">
+            Last Updated By:
+        </th>
+        <td class="shower">
+            <%=h @note.updated_by.name %>
+        </td>
+    </tr>
+    <tr>
+        <th class="shower">
+            Date Last Updated:
+        </th>
+        <td class="shower">
+            <%=h @note.updated_at.strftime("%m/%d/%Y %I:%M:%S %p") %>
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan = "2">
+            <%= link_to 'List', notes_path %>  
+            <% if current_user.access_role.name == "Admin" %> | 
+                <%= link_to 'Edit', edit_note_path( :id => @note.id) %>
+            <% end %> 
+       </td>
+    </tr> 
+</table>
+
+</div>
+  
+

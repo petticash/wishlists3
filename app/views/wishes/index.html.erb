@@ -1,0 +1,44 @@
+<div class="post_title">
+    <h1><%= User.find(@user_id).name %>'s Wishes</h1>
+</div>
+<div class="post_body">
+<table>
+<tr> 
+    <th class="lister">Wish</th> 
+    <th class="lister">Groups</th>  
+    <th class="lister">Date Created</th>  
+    <% if @user_id.to_i != current_user.id %>
+        <th class="lister">Purchased By</th> 
+    <% end %>
+  </tr>
+
+<% for wish in @wishes %>
+  <tr>
+    <td class="lister"><%= wish.name_for_html %></td>
+    <td class="lister"><%= wish.common_group_names(current_user) %></td>
+    <td class="lister"><%=h wish.created_at.strftime("%m/%d/%Y") %></td>
+    
+    <% if @user_id.to_i != current_user.id %>
+        <% if wish.purchased_by_id.blank? %>
+            <td class="lister">
+            <%= link_to 'Purchase', :controller => 'wishes', :action => 'purchase', :wish => wish, :frompage => "index" %>
+            </td>
+        <% else %>
+            <td class="lister"><%=h wish.purchased_by.name %></td>
+        <% end %>
+    <% end %>
+    
+    <td class="lister">
+    <%= link_to 'Show', wish_path(:id => wish.id, :frompage => 'index') %> </td>
+  </tr>
+<% end %>
+
+</table>
+
+<% if @user_id.to_i == current_user.id %>
+<p>
+<%= link_to "Add New Wish", :controller => 'wishes', :action => 'new' %>
+</p>
+<% end %>
+
+</div>

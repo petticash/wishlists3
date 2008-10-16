@@ -1,28 +1,91 @@
-<H1>User Record</H1>
-
+<div class="post_title">
+    <h1>User Details</h1>
+</div>
+<div class="post_body">
+<table>
+    <tr>
+        <th class="shower">
+            Login:
+        </th>
+        <td class="shower">
+            <%=h @user.login %>
+        </td>
+    </tr>
+    <tr>
+        <th class="shower">
+            First Name:
+        </th>
+        <td class="shower">
+            <%=h @user.first_name %>
+        </td>
+    </tr>
+    <tr>
+        <th class="shower">
+            Last Name:
+        </th>
+        <td class="shower">
+            <%=h @user.last_name %>
+        </td>
+    </tr>
+    <tr>
+        <th class="shower">
+            E-Mail:
+        </th>
+        <td class="shower">
+            <%=h @user.email %>
+        </td>
+    </tr>
+    <tr>
+        <th class="shower">
+            Groups:
+        </th>
+        <td class="shower">
+            <% for group in @user.groups%>                
+                <%=h group.name %><br/>
+            <% end %>  
+        </td>
+    </tr>
+    <tr>
+        <th class="shower">
+            Created By:
+        </th>
+        <td class="shower">
+            <%=h @user.created_by.name %>
+        </td>
+    </tr>    
+    <tr>
+        <th class="shower">
+            Date Created:
+        </th>
+        <td class="shower">
+            <%=h @user.created_at.strftime("%m/%d/%Y %I:%M:%S %p") %>
+        </td>
+    </tr>
+    <tr>
+        <th class="shower">
+            Last Updated By:
+        </th>
+        <td class="shower">
+            <%=h @user.updated_by.name %>
+        </td>
+    </tr>
+    <tr>
+        <th class="shower">
+            Date Last Updated:
+        </th>
+        <td class="shower">
+            <%=h @user.updated_at.strftime("%m/%d/%Y %I:%M:%S %p") %>
+        </td>
+    </tr> 
   
-  <p>
-  <b>Login:</b>
-  <%=h @user.login %>
-</p>
-  
-<p>
-  <b>First Name:</b>
-  <%=h @user.first_name %>
-</p>
+    <tr>
+        <td colspan = "2">
+            <% if current_user.access_role.name == "Admin" %>
+                <%= link_to 'List', users_path %> | 
+                <%= link_to 'Edit', edit_user_path( :id => @user.id) %>
+            <% end %>
+       </td>
+    </tr> 
+</table>
 
-
-  <p>
-    <b>Last Name:</b>
-  <%=h @user.last_name %>
-  </p>
-
-  <p>
-   <b>E-Mail:</b>
-  <%=h @user.email %>
-  </p>
-  
-  
-
-<%= link_to 'List', users_path %> | 
-<%= link_to 'Edit', edit_user_path( :id => @user.id) %> 
+</div>

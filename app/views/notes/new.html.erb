@@ -1,0 +1,38 @@
+
+<div class="post_title">
+    <h1>Create New Note</h1>
+</div>
+<div class="post_body">
+<%= error_messages_for :note %>
+<% form_for :note, :url => notes_path do |f| -%>
+<table>
+
+    <tr>
+        <th class="shower">
+            Note:
+        </th>
+        <td class="shower">
+            <%= f.text_area :name%>
+        </td>
+    </tr>
+    <tr>
+        <td colspan = "2">
+            <br/>
+            <%= submit_tag 'Submit' %>
+       </td>
+    </tr> 
+    
+<% end -%> 
+
+
+    <tr>
+        <td colspan = "2">
+            <br/>
+            <%= link_to 'List', notes_path %>
+       </td>
+    </tr> 
+   
+</table>
+
+
+</div>        

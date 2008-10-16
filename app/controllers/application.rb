@@ -13,4 +13,8 @@ class ApplicationController < ActionController::Base
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password"). 
   # filter_parameter_logging :password
+  
+  def application
+    @side_notes = Note.find(:all, :limit => 5)
+  end
 end

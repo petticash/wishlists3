@@ -1,0 +1,29 @@
+<div class="post_title">
+    <h1>All Wishes</h1>
+</div>
+<div class="post_body">
+
+<table>
+
+    <% for grp in current_user.groups %>
+        <tr>            
+            <td>
+                <h1><%= grp.name %></h1> 
+            </td>
+        </tr>
+        <tr>
+        <td></td>
+            <td>
+                <ul>
+                    <% for usr in grp.users %>
+                    <li><%= link_to usr.name, :controller => 'wishes', :action => 'index', :user_id => usr.id %> </li>
+                    <% end %>
+                </ul>
+            </td>
+        </tr>        
+
+    <% end %>
+ 
+
+</table>
+</div>

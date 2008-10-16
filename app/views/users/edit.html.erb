@@ -1,28 +1,84 @@
-<h1>Edit a User</h1>
+<div class="post_title">
+    <h1>Edit User</h1>
+</div>
+<div class="post_body">
+
+<table>
 
 <%= error_messages_for :user %>
 <%form_for :user, :url => user_path(@user.id), :html => {:method => :put} do |f| %>
 
-<p><label for="first_name">First Name</label><br/>
-<%= f.text_field :first_name, :readonly => true %></p>
+    <tr>
+        <th class="shower">
+            First Name:
+        </th>
+        <td class="shower">
+            <%= f.text_field :first_name %>
+        </td>
+    </tr> 
+    <tr>
+        <th class="shower">
+            Last Name:
+        </th>
+        <td class="shower">
+            <%= f.text_field :last_name %>
+        </td>
+    </tr> 
+    <tr>
+        <th class="shower">
+            Email:
+        </th>
+        <td class="shower">
+            <%= f.text_field :email %>
+        </td>
+    </tr> 
+    <tr>
+        <th class="shower">
+            Role:
+        </th>
+        <td class="shower">
+            <%= f.collection_select :access_role_id, AccessRole.find(:all), :id, :name, :include_blank => true  %>
+        </td>
+    </tr> 
+    <tr>
+        <th class="shower">
+            Login:
+        </th>
+        <td class="shower">
+            <%= f.text_field :login %>
+        </td>
+    </tr>
+    <tr>
+        <th class="shower">
+            Groups:
+        </th>
+        <td class="shower">
+            <%= select_tag("group_ids[]", options_for_select(Group.find(:all).collect { |grp| [grp.name, grp.id] }, @user.groups.collect { |grp| grp.id}), {:multiple=>true, :size=>6})%>
+        </td>
+    </tr>
+    <tr>
+        <td colspan = "2">
+            <br/>
+            <%= submit_tag 'Submit' %>
+       </td>
+    </tr> 
+    
+<% end -%> 
 
-<p><label for="last_name">Last Name</label><br/>
-<%= f.text_field :last_name, :readonly => true %></p>
 
-<p><label for="email">Email</label><br/>
-<%= f.text_field :email, :readonly => true %></p>
+    <tr>
+        <td colspan = "2">
+            <br/>
+            <% if current_user.access_role.name == "Admin" %>
+                <%= link_to 'Show', user_path %> | <%= link_to 'List', users_path %><br/>
+                <%= link_to "Change Password", edit_password_users_path(:id => current_user.id) %>
+            <% end %> 
+       </td>
+    </tr> 
+   
+</table>
 
-<p><label for="role">Role</label><br/>
-<%= f.text_field :access_role_id, :readonly => true %></p>
 
-<p><label for="login">Login</label><br/>
-<%= f.text_field :login, :readonly => true %></p>
+</div> 
 
-<p><label for="password">Password</label><br/>
-<%= f.password_field :password %></p>
 
-<p><label for="password_confirmation">Confirm Password</label><br/>
-<%= f.password_field :password_confirmation %></p>
-
-<p><%= submit_tag 'Submit' %></p>
-<% end -%>

@@ -1,0 +1,45 @@
+
+<div class="post_title">
+    <h1>Create New Wishes</h1>
+</div>
+<div class="post_body">
+<% form_for :wish, :url => wishes_path do |f| %>
+<table>
+
+    <tr>
+        <th class="shower">
+            Wish:
+        </th>
+        <td class="shower">
+            <%= f.text_area :name %>
+        </td>
+    </tr> 
+    <tr>
+        <th class="shower">
+            Wish visible to Groups:
+        </th>
+        <td class="shower">
+            <%= f.collection_select :group_ids, Group.find_users_groups(current_user), :id, :name,{}, {:multiple => true , :size => 6} %>
+        </td>
+    </tr>  
+    <tr>
+        <td colspan = "2">
+            <br/>
+            <%= submit_tag 'Submit' %>
+       </td>
+    </tr> 
+    
+<% end -%> 
+
+
+    <tr>
+        <td colspan = "2">
+            <br/>
+            <%= link_to 'List', wishes_path(:user_id => current_user.id) %>
+       </td>
+    </tr> 
+   
+</table>
+
+
+</div>        

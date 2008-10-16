@@ -1,0 +1,95 @@
+<div class="post_title">
+    <h1>Wish Details</h1>
+</div>
+<div class="post_body">
+<table>
+    <tr>
+        <th class="shower">
+            Wish:
+        </th>
+        <td class="shower">
+            <%=h @wish.name %>
+        </td>
+    </tr> 
+    <tr>
+        <th class="shower">
+            Wish visible to Groups:
+        </th>
+        <td class="shower">
+            <%=h @wish.common_group_names(current_user) %>
+        </td>
+    </tr> 
+    <tr>
+        <th class="shower">
+            Created By:
+        </th>
+        <td class="shower">
+            <%=h @wish.created_by.name %>
+        </td>
+    </tr>     
+    <tr>
+        <th class="shower">
+            Date Created:
+        </th>
+        <td class="shower">
+            <%=h @wish.created_at.strftime("%m/%d/%Y %I:%M:%S %p") %>
+        </td>
+    </tr>
+         <tr>
+        <th class="shower">
+          Last Updated By:
+        </th>
+        <td class="shower">
+            <%=h @wish.updated_by.name %>
+        </td>
+    </tr> 
+    <tr>
+        <th class="shower">
+           Date Last Updated:
+        </th>
+        <td class="shower">
+            <%=h @wish.updated_at.strftime("%m/%d/%Y %I:%M:%S %p") %>
+        </td>
+    </tr> 
+    
+    <% if @wish.created_by_id != current_user.id %>
+    <tr>
+        <th class="shower">
+          Purchased By:
+        </th>
+        <td class="shower">
+            <% if !@wish.purchased_by.blank?%>
+                <%=h @wish.purchased_by.name %>
+            <% else %>
+                Not yet purchased
+            <% end %>
+        </td>
+    </tr> 
+    <% end %>
+    
+    <tr>
+        <td colspan = "2">
+            <% if @frompage == 'index' %>  
+                <%= link_to 'List', wishes_path(:user_id => @wish.created_by_id) %> 
+            <% elsif @frompage == 'index_purchased' %>
+                <%= link_to 'List', :controller => 'wishes', :action => 'index_purchased' %>
+            <% end %>
+
+            <% if @wish.created_by_id == current_user.id %> 
+                | <%= link_to 'Edit', edit_wish_path( :id => @wish.id) %>
+                <% if @wish.purchased_by_id.blank? %>
+                    | <%= link_to 'Delete', @wish, :confirm => 'Are you sure?', :method => :delete %>
+                <% else %>
+                    | <%= link_to 'Delete', @wish, :confirm => 'Are you sure? Someone had marked this wish as purchased...', :method => :delete %>
+                <% end %>
+            <% end %>
+   
+            <% if @wish.purchased_by_id.blank? && @wish.created_by_id != current_user.id%>
+                | <%= link_to 'Purchase', :controller => 'wishes', :action => 'purchase', :wish => @wish, :frompage => 'show' %>
+            <% end %>
+       </td>
+    </tr> 
+</table>
+</div>  
+
+

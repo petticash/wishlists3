@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  has_and_belongs_to_many :groups
+
   # Virtual attribute for the unencrypted password
   attr_accessor :password
   
@@ -93,6 +95,16 @@ class User < ActiveRecord::Base
     "#{self.first_name} #{self.last_name}"     
   end
   
+  def group_ids
+    grps = ""
+    self.groups.each do |grp|
+      if !grps.blank? 
+        grps = grps + ", "
+      end
+      grps = grps + grp.id.to_s
+    end
+    grps
+  end  
   
   protected
     # before filter 
@@ -106,7 +118,10 @@ class User < ActiveRecord::Base
       crypted_password.blank? || !password.blank?
     end
     
-
+    def get_users_in_group(grp)
+      #find(:all,:conditions => {:group => grp})
+      
+    end
   
   
 end

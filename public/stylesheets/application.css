@@ -79,13 +79,12 @@ big,.big {font-size: 1.2em;}
 ------------------------------------------- */
 
 /* Inputs */
-input#s, textarea, input.styled {
+input#s,  input.styled {
 	border: 1px solid #BBB;
 	padding: 3px;
 	width: 160px;
 	font: normal 1em Verdana,sans-serif;
 }
-textarea {width: 440px;}
 #searchsubmit {
 	border: 1px solid #BBB;
 	background: #EEE;
@@ -211,6 +210,20 @@ table.search {
 	text-decoration: underline;
 }
 
+
+/* ----------------------------------------
+ Notice 
+------------------------------------------- */
+
+
+#notice {
+	background: #C5DFF0;
+	text-align: center;
+	font-size: 8pt;
+	margin-top: 3px;
+	margin-bottom: 10px;
+	font-weight: bold;
+}
 
 /* ----------------------------------------
    Miscellaneous
@@ -457,7 +470,7 @@ th.lister {
 	padding: 6px 6px 6px 12px;
 }
 td.lister {
-	font: normal 9px Verdana,sans-serif;
+	font: normal 10px Verdana,sans-serif;
 	border-right: 1px solid #C1DAD7;
 	border-bottom: 1px solid #C1DAD7;
 	background: #fff;
@@ -467,9 +480,28 @@ td.lister {
 
 
 td.lister_alt {
-	font: normal 9px Verdana,sans-serif;
+	font: normal 10px Verdana,sans-serif;
 	background: #F5FAFA;
 	color: #797268;
 }
 
-
+th.shower {
+	font: bold 11px Verdana,sans-serif;
+	color: #4f6b72;
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	border-top: 1px solid #C1DAD7;
+	background: #fff;
+	/*letter-spacing: 2px;
+	text-transform: uppercase;*/
+	text-align: right;
+	padding: 6px 25px 20px 50px;
+}
+td.shower {
+	font: normal 10px Verdana,sans-serif;
+	/*border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;*/
+	/*background: #fff;*/
+	padding: 6px 6px 20px 12px;
+	color: #4f6b72;
+}

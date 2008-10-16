@@ -1,0 +1,41 @@
+<div class="post_title">
+    <h1>Edit Note</h1>
+</div>
+<div class="post_body">
+
+<table>
+
+<%= error_messages_for :note %>
+<%form_for :note, :url => note_path(@note.id), :html => {:method => :put} do |f| %>
+
+    <tr>
+        <th class="shower">
+            Note:
+        </th>
+        <td class="shower">
+            <%= f.text_area :name %>
+        </td>
+    </tr> 
+    <tr>
+        <td colspan = "2">
+            <br/>
+            <%= submit_tag 'Submit' %>
+       </td>
+    </tr> 
+    
+<% end -%> 
+
+    <tr>
+        <td colspan = "2">
+            <br/>
+            <% if current_user.access_role.name == "Admin" %>
+                <%= link_to 'Show', note_path %> | <%= link_to 'List', notes_path %>
+            <% end %> 
+       </td>
+    </tr> 
+   
+</table>
+
+
+</div> 
+

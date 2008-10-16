@@ -1,0 +1,31 @@
+<div class="post_title">
+    <h1>News and Notes</h1>
+</div>
+<div class="post_body">
+<table>
+<tr> 
+    <th class="lister">Date</th> 
+    <th class="lister">Note</th>  
+  </tr>
+
+<% for note in @notes %>
+  <tr>
+    <td class="lister"><%=h note.created_at.strftime("%m/%d/%Y") %></td>
+    <td class="lister"><%= note.name_for_html %></td>
+    <td class="lister">
+    <%= link_to 'Show', note_path(:id => note.id) %> </td>
+  </tr>
+<% end %>
+
+</table>
+
+<% if current_user.access_role.name == "Admin" %>
+<p>
+<%= link_to "Add New Note", :controller => 'notes', :action => 'new' %>
+</p>
+<% end %> 
+</div>
+
+<% content_for :side_notes2 do %>
+hello
+<% end %>

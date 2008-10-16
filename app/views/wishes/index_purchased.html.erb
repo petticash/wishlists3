@@ -1,0 +1,38 @@
+<div class="post_title">
+    <h1>Wishes I've Purchased</h1>
+</div>
+<div class="post_body">
+<table>
+<tr> 
+    <th class="lister">User</th> 
+    <th class="lister">Wish</th> 
+    <th class="lister">Groups</th>  
+    <th class="lister">Date Created</th>  
+    <th class="lister">Deleted</th>  
+  </tr>
+
+<% for wish in @wishes %>
+  <tr>
+    <td class="lister"><%= wish.created_by.name %></td>
+    <td class="lister"><%= wish.name_for_html %></td>
+    <td class="lister"><%= wish.common_group_names(current_user) %></td>
+    <td class="lister"><%=h wish.created_at.strftime("%Y-%m-%d") %></td>
+    <td class="lister">
+        <% if wish.expired == 1 %>
+            <font color="red">Deleted</font>
+        <% else %>
+            Active        
+        <% end %>
+   </td>
+    
+    
+    <td class="lister">
+    <%= link_to 'Show', wish_path(:id => wish.id, :frompage => 'index_purchased') %> </td>
+  </tr>
+<% end %>
+
+</table>
+
+
+
+</div>
