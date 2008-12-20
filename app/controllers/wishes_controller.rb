@@ -81,9 +81,16 @@ class WishesController < ApplicationController
   def purchase
   #, :confirm => 'Do you want to mark this wish as purchased by you?', :frompage => 'index'
     wish = Wish.find(params[:wish])
-    wish.update_attributes({:purchased_by => current_user})
+    flash_text = ""
+    if wish.purchased_by.blank?
+      wish.update_attributes({:purchased_by => current_user})
+      flash_text = "Wish marked as purchased" 
+    else
+      wish.update_attributes({:purchased_by => nil})
+      flash_text = "Wish's purchase status removed"       
+    end
     if params[:frompage] == "index"
-      flash[:notice] = "Wish marked as purchased"
+      flash[:notice] = flash_text
       redirect_to(wishes_path(:user_id => wish.created_by_id))
     elsif params[:frompage] == "show"
       flash[:notice] = "Wish marked as purchased"

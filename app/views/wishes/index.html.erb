@@ -24,7 +24,11 @@
             <%= link_to 'Purchase', :controller => 'wishes', :action => 'purchase', :wish => wish, :frompage => "index" %>
             </td>
         <% else %>
-            <td class="lister"><%=h wish.purchased_by.name %></td>
+            <td class="lister"><%=h wish.purchased_by.name %>
+            <% if current_user.id == wish.purchased_by.id %>
+                <br/><%= link_to 'Un-Purchase', :controller => 'wishes', :action => 'purchase', :wish => wish, :frompage => "index" %>
+            <% end %> 
+            </td>
         <% end %>
     <% end %>
     
