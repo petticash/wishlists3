@@ -6,7 +6,7 @@ role :db,  application, :primary => true
 
 set :user, "deploy"
 set :deploy_to, "/var/www/brightroom/"
-set :deploy_via, :remote_cache
+# set :deploy_via, :remote_cache
 # set :use_sudo, true
 
 set :scm, "git"
